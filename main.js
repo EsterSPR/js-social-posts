@@ -56,6 +56,8 @@ const posts = [
     }
 ];
 
+//–––––––––––––––––––––––––––
+
 let post = ''
 posts.forEach(element => {
     post += 
@@ -94,3 +96,20 @@ posts.forEach(element => {
 
 let container = document.getElementById('container');
 container.innerHTML += post;
+
+//–––––––––––––––––––––––––––
+
+const likeBTN = document.getElementsByClassName('js-like-button');
+const likeArray = [];
+
+for (let i = 0; i < likeBTN.length; i++) {
+    likeBTN[i].addEventListener('click', function(){
+        const postID = this.dataset.postid;
+        const likeCounter = document.getElementById(`like-counter-${postID}`)
+        const likeNumber = parseInt(likeCounter.innerText);
+        
+        likeCounter.innerText = likeNumber+1;
+        likeArray.push(postID);
+        likeBTN[i].classList.add('like-button--liked');
+    });
+}
